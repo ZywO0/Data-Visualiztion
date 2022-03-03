@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        rect {
+            stroke: darkgray;
+            stroke-width: 2px
+        }
+    </style>
+</head>
+<body>
+<svg width="800" height="400">
+</svg>
+</body>
+<script>
+    execute = function (){
+        let svg = d3.select("svg");
+        let selections = svg.selectAll("g")
+            .data([127, 61, 256,10,200])
+            .enter().append("g")
+            .attr("x", 0)
+            .attr("y", (d, i) => i * 60 + 50)
+            .attr("width", d => d)
+            .attr("height", 20)
+            .style("fill", "steelblue");
+
+        selections
+            .append("rect")
+            .attr("x", 0)
+            .attr("y", (d, i) => i * 60 + 50)
+            .attr("width", d => d)
+            .attr("height", 20)
+            .style("fill", "steelblue");
+        selections
+            .append("text").text(d => d+"apples")
+            .attr("x", 0)
+            .attr("y", (d, i) => i * 60 + 60)
+            .attr("dy", ".35em")
+            .attr("height", 20)
+            .style("fill", "black");
+    }
+
+</script>
+<script src="assets/js/run.js"></script>
+</html>
