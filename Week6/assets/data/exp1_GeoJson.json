@@ -1,0 +1,146 @@
+{
+  "Point - a single position": {
+    "type" : "Point",
+    "coordinates" : [
+      -105.01621,
+      39.57422
+    ]
+  },
+
+  "MultiPoint - an array of positions.": {
+    "type" : "MultiPoint",
+    "coordinates" : [
+      [-105.01621, 39.57422],
+      [-80.6665134, 35.0539943]
+    ]
+  },
+
+  "LineString - an array of positions forming a continuous line": {
+    "type" : "LineString",
+    "coordinates" : [
+      [-101.744384765625, 39.32155002466662],
+      [-101.5521240234375, 39.330048552942415],
+      [-101.40380859375,  39.330048552942415],
+      [-101.33239746093749,39.364032338047984],
+      [-101.041259765625,39.36827914916011]
+    ]
+  },
+
+  "MultiLineString - an array of arrays of positions forming several lines." : {
+    "type": "MultiLineString",
+    "coordinates": [
+      [
+        [-105.0214433670044, 39.57805759162015],
+        [-105.02150774002075, 39.57780951131517],
+        [-105.02157211303711, 39.57749527498758]
+      ],
+      [
+        [-105.0142765045166, 39.57397242286402],
+        [-105.01412630081175, 39.57403858136094]
+      ]
+    ]
+  },
+
+  "Polygon - an array of arrays of positions forming a polygon (possibly with holes).": {
+    "type": "Polygon",
+    "coordinates": []
+  },
+  "MultiPolygon 多个多边形- a multidimensional array of positions forming multiple polygons.": {
+    "type" : "MultiPolygon",
+    "coordinates" : [
+      [
+        [],
+        [],
+        []
+      ],
+      [
+        [],
+        [],
+        [],
+        []
+      ],
+      [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    ]
+  },
+
+  "Geometry Collection - an array of geometry objects": {
+    "type": "GeometryCollection",
+    "geometries": [
+      {
+        "type": "Point",
+        "coordinates": [-80.66080570220947, 35.04939206472683]
+      },
+      {
+        "type": "Polygon",
+        "coordinates": [
+          [],
+          [],
+          []
+        ]
+      }
+    ]
+  },
+
+  "Feature - a feature containing one of the above geometry objects.": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [-80.72487831115721, 35.26545403190955],
+          [],
+          []
+        ]
+      ]
+    },
+    "properties": {
+      "name": "Plaza Road Park"
+    }
+  },
+
+  "FeatureCollection - an array of feature objects": {
+    "type" : "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-80.87088507656375, 35.21515162500578]
+        },
+        "properties": {
+          "name": "ABBOTT NEIGHBORHOOD PARK",
+          "address": "1300  SPRUCE ST"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -80.72487831115721,
+                35.26545403190955
+              ],
+              [
+                -80.72135925292969,
+                35.26727607954368
+              ]
+            ]
+          ]
+        },
+        "properties" : {
+          "name": "Plaza Road Park"
+        }
+      }
+    ]
+  }
+
+
+}
