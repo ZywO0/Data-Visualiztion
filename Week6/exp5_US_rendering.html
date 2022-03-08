@@ -39,9 +39,13 @@
         // This converts the projected lat/lon coordinates into an SVG path string
         let path = d3.geoPath()
             .projection(projection);
+        // path is a function, which take the jsons feature as the parameters, and return a string
 
         // Load in GeoJSON data
         let json = await d3.json("assets/data/us-states.json");
+        let json1 = await d3.json("assets/data/exp3_US_Alabama.json");
+        let json2 = await d3.json("assets/data/exp2_TopoJson.json");
+
 
         // Bind data and create one path per GeoJSON feature
         d3.select("#mapLayer").selectAll("path")
@@ -50,9 +54,9 @@
             // here we use the familiar d attribute again to define the path
             .attr("d", path);
 
-        // let graticule = d3.geoGraticule();
-        // d3.select("#mapLayer").append('path')
-        // .datum(graticule).attr('class', "grat").attr('d', path).attr('fill', 'none');
+        let graticule = d3.geoGraticule();
+        d3.select("#mapLayer").append('path')
+        .datum(graticule).attr('class', "grat").attr('d', path).attr('fill', 'none');
     }
     usMap();
 </script>

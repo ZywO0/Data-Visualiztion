@@ -14,7 +14,7 @@
 <svg width="800" height="600"></svg>
 <script type="text/javascript">
     {
-        let d = {
+        let d1 = {
             'lon': -83.903347,
             'lat': 38.769315
         };
@@ -27,11 +27,20 @@
         // a USA-specific projection (that deals with Hawaii / Alaska)
         projection.translate([width / 2, height / 2]); // this centers the map in our SVG element
 
-        let pos = projection([d["lon"], d.lat]);
+        let pos = projection([d1["lon"], d1.lat]);
         console.log("Original positions:");
-        console.log(d);
+        console.log(d1);
         console.log("Projected positions: " + pos);
-        svg.append('text').text('X').datum(pos).attr('x', d => d[0]).attr('y', d => d[1]).attr('fill', 'purple');
+
+        // svg.selectAll("text")
+        //     .data(pos)
+        //     .join("text")
+        //     .text("xx")
+        //     .attr('x',d => d)
+        //     .attr("y",d => d)
+        //     .attr("fill","blue")
+
+        svg.datum(pos).append('text').text('X').attr('x', d => d[0]).attr('y', d => d[1]).attr('fill', 'purple');
     }
 </script>
 </body>

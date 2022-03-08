@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <style>
+        path {
+            fill: none;
+            stroke-width: 1px;
+            stroke: #222;
+        }
+    </style>
+</head>
+
+<body>
+<svg width="800" height="600">
+    <g id = "maplayer"></g>
+    <g id="citylayer"></g>
+</svg>
+<script type="text/javascript">
+    async function cities(){
+        let svg = d3.select("svg");
+        let width = parseInt(svg.attr("width"));
+        let height = parseInt(svg.attr("height"));
+
+        let projection = d3.geoAlbersUsa()
+            .translate([width/2,height/2])
+            .scale([700])
+
+        let path = d3.geoPath()
+            .projection(projection);
+
+        let json = await d3.json("assets/data/us-states.json")
+
+        d3.select("#maplayer").selectAll("path")
+            .data(json.features)
+            .join("path")
+            .attr("d",path);
+
+        //cities
+        let data = await d3.csv("assets/data/us-cities.csv")
+
+        d3.select("#citylayer").selectAll("circle")
+            .data(data)
+            .join("circle")
+            .attr("cx", d => projection([d.lon,d.lat])[0])
+            .attr("cy", d => projection([d.lon,d.lat])[1])
+            .attr("r", d => Math.sqrt(parseInt(d.population) * 0.00004))
+            .style("fill" ,"steelblue")
+            .style("opacity",0.8)
+
+
+    }
+    cities();
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3: Loading GeoJSON data and generating SVG paths</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <style>
+        path {
+            fill: none;
+            stroke-width: 1px;
+            stroke: #222;
+        }
+    </style>
+</head>
+
+<body>
+<svg width="800" height="600">
+    <g id = "maplayer"></g>
+    <g id="citylayer"></g>
+</svg>
+<script type="text/javascript">
+    async function cities(){
+        let svg = d3.select("svg");
+        let width = parseInt(svg.attr("width"));
+        let height = parseInt(svg.attr("height"));
+
+        let projection = d3.geoAlbersUsa()
+            .translate([width/2,height/2])
+            .scale([700]);
+
+        let path = d3.geoPath()
+            .projection(projection);
+
+        let json = await d3.json("assets/data/us-states.json")
+
+        let stateData = await d3.csv("assets/data/us-ag-productivity-2004.csv");
+        // d3.select("#maplayer").selectAll("path")
+        //     .data(json.features)
+        //     .join("path")
+        //     .attr("d",path);
+
+        // Define a quantized scale to sort data values into buckets of color
+        let color = d3.scaleQuantize()
+            .range(["#edf8fb",
+                "#b2e2e2",
+                "#66c2a4",
+                "#2ca25f",
+                "#006d2c"
+            ])
+            .domain([
+                d3.min(stateData, d => d.value),
+                d3.max(stateData, d => d.value)
+            ])
+        ;
+        // Set input domain for color scale based on the min and max
+
+
+        // Convert the data array to an object, so that it's easy to look up
+        // data values by state names
+        let dataLookup = {};
+        stateData.forEach(stateRow => dataLookup[stateRow.state] = parseFloat(stateRow.value));
+
+        // Now we add the data values to the geometry for every state
+
+        json.features.forEach(feature => feature.properties.value = dataLookup[feature.properties.name]);
+
+        d3.select("#maplayer").selectAll("path")
+            .data(json.features)
+            .join("path")
+            .attr("d", path)
+            .style("fill",d => color(d.properties.value))
+
+
+
+        // //cities
+        // let data = await d3.csv("assets/data/us-cities.csv")
+        //
+        // d3.select("#citylayer").selectAll("circle")
+        //     .data(data)
+        //     .join("circle")
+        //     .attr("cx", d => projection([d.lon,d.lat])[0])
+        //     .attr("cy", d => projection([d.lon,d.lat])[1])
+        //     .attr("r", d => Math.sqrt(parseInt(d.population) * 0.00004))
+        //     .style("fill" ,"steelblue")
+        //     .style("opacity",0.8)
+
+
+    }
+    cities();
+</script>
+</body>
+</html>
