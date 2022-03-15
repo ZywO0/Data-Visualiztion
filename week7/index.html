@@ -1,0 +1,42 @@
+<!-- Courtesy of http://jsfiddle.net/x7y8d6m3/ -->
+<!-- RB - Modified on 2020/02/22 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/my-style.css">
+    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div style="padding: 10px">
+    <div id="chart"></div>
+    <div style="padding-top: 10px">
+        <div style="width: 515px; clear:both;">
+            <input id="slider" type="range" style="width:100%" min="1789" value="0" max="2012">
+            <span style="float:left">Presidents starting after: <strong><span id="start-year">1789</span></strong></span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src = "assets/js/CF-Example.js"></script>
+
+<script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+        window.parent.parent.postMessage(["resultsFrame", {
+            height: document.body.getBoundingClientRect().height,
+            slug: "vSUte"
+        }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+</script>
+
+
+</body>
+</html>

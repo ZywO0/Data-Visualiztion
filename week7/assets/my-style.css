@@ -1,0 +1,17 @@
+/* Courtesy of http://jsfiddle.net/x7y8d6m3/ */
+/* RB - Modified on 2020/02/22 */
+
+body {
+    font: 10px sans-serif;
+}
+.chart rect {
+    stroke: white;
+    fill: steelblue;
+}
+.chart text {
+    fill: black;
+    text-anchor: end;
+}
+.chart text.white-label {
+    fill: white;
+}
