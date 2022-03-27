@@ -24,8 +24,9 @@
         let svg = d3.select("svg");
         let selection = svg.selectAll("rect")
             .data([127, 61, 256,71,100]);
-        // selection = selection.enter().merge(selection);
+
         selection = selection.enter().append("rect").merge(selection);
+        //selection = selection.merge(selection.enter().append("rect"));
 
 
         selection
